@@ -1,15 +1,15 @@
-####*ECOMMERCE APP*####
+####*GROCERY ECOMMERCE APP*####
 
 #To Run the application follow these steps - 
 
-1. Open 'Ecommerce_App' folder in Visual Studio(VS).
+1. Open 'Ecommerce_App-master' folder in Visual Studio(VS).
 
 2. Open Terminal in VS and execute "npm run install-all". Wait for it to complete.
    (This will install/verify all npm modules for both server and client side)
 
-3. To start the mongodb server, execute "mongod --dbpath "{path}/Ecommerce_App/ecommerceDB"".
+3. To start the mongodb server, execute "mongod --dbpath "{path}/Ecommerce_App-master/ecommerceDB"".
    Keep this terminal running.
-   (path = where you have kept the Ecommerce_App Folder on your system)
+   (path = where you have kept the Ecommerce_App-master Folder on your system)
 
 4. Open another terminal in VS and execute "npm run start-server" to start the backend nodeJS
    server on port 3001. Keep this running too.
