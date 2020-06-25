@@ -1,0 +1,10 @@
+.OrderItem {
+    font-size: large;
+    text-align: center;
+}
+
+@media (max-width:500px) {
+    .OrderItem {
+        font-size: xx-small;
+    }
+}

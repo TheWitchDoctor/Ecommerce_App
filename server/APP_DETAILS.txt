@@ -1,0 +1,228 @@
+ECOMMERCE APP -
+
+To execute the express application follow these steps -
+1) Initialize npm using "npm init"
+2) Install all dependencies and dev dependencies using "npm install" and "npm install --save-dev"
+3) Run "npm run start" for node || "npm run dev" for nodemon
+
+
+WHAT I HAVE DONE - (Note - For Autentication and Authorization I have used JWT Tokens locally stored when Login and deleted after Logout)
+
+1) User and Product Models with data validation (models Folder). User model has various methods 
+like hashPassword, hide confidential data, login function and Authentication Token generation.
+
+
+2) Mongoose connection file is in db Folder and imported to app.js.
+
+
+3) Imported models in user and product routers (routers Folder). 
+
+CUSTOMER functions (USER route) -
+User route conatins various routes for Registeration, Login, Update Info, Avatar Upload, Read Profile,
+Delete User, View Cart, View Orders, Add/Remove Products in cart, Place New Order, Confirm Order delivery and Logout.
+
+ADMIN functions (USER route) -
+User route also contains some Admin User functions like - 
+View All registered users and filter by city, name, age, cart, orders, role, contact or email.
+Update User cart by ID, and Update User orders by ID.
+
+
+CUSTOMER functions(PRODUCT route) -
+Read All products and filter by title, category, InStock & sort by price, quantity, title
+
+
+ADMIN functions (PRODUCT route) -
+Add new Products to Stock, Update Existing Products by ID, Delete Products by ID
+
+
+NOTE - ADMIN can also execute all functions as a customer.
+
+
+
+4) middleware folder contains the auth file in which authentication fucntion for customer (auth)
+and Authentication function for Admin (authAdmin) exists. 
+Each route has this middleware file executed to check for authentication and authorization of
+function being executed.
+
+
+5) All the functions that are used by routes, are defined inside separate files in controllers(userController
+ and productController).
+
+
+6) Express App configuration is done in app.js
+
+
+7) App is imported in index.js and app init is done in this file to listen on specified Port.
+
+
+8) Secret Key, Confidential data(urls), Port and ADMIN_PASSWORD are defined in separate dev.env file in config Folder.
+
+
+9) Various automated test cases have been configured in tests folder in two files( user.test.js and
+ product.test.js). These tests check whether the App works as per requirements. They validate 
+authentication and authorization function in the app.
+
+
+10) To execute test cases run this command - "npm run test" (requires dev Dependencies)
+
+
+
+
+FEATURES OF THE APP -
+1) Customers can only execute limited functions and are restricted from executing Admin functions.
+
+2) Each time a product is added or removed in cart by the customer, Product stock is updated automatically.
+
+3) New Products being added by Admin generate ID automatically from last product reference. (Eg. product_5)
+
+4) Admin can easily find customers from selected cities, age or filter by cart amount and product in cart.
+Also identify various orders and filter/sort by price, products in order, date, etc.
+
+5) Customer has the option to confirm delivery upon which orders are marked as completed.
+
+6) Only Admin can add new Products, Delete and Update them from Stock.
+
+7) Customers can read all Products however for Customers the confidential data like product _id, timestamps
+are hidden. Admin can view all products along with their ID's.
+
+8) Upon Signing Up User is automatically logged in and token is generated.
+
+9) User can Upload Avatar for profile. Also Delete them.
+
+10)User has the option to sign out of all sessions on all devices. All Token data is reset.
+
+11) Plain Text Passwords are not visible and Because of hashing passwords, they cannot be extracted either.
+Passwords are verified only by using secret key in .env file.
+
+12) Customer can view, modify cart and place new orders. Products are automatically set to InStock = false, 
+when the product quantity in stock is 0. 
+
+13) Also for efficient database, when user removes all quantity of a product from cart it
+ is automatically removed from cart data. Added back when user adds the product back.
+
+14) When User places an order, All Product prices in cart are verified again for any price changes and the
+total amount is updated in case of any price change.
+
+15) To create user with role="Admin" the pass field must match with the ADMIN_PASSWORD Enviroment variable in dev.env for security.
+
+
+
+
+
+CONFIGURING POSTMAN TO MAKE API CALLS -
+
+1) Create a new Collection.
+
+2) In Authorization Setting set Type = "Bearer Token" and Token = "{{authToken}}"
+
+3) Create a new Environment for the collection and in its setting add a variable "url" with value = "localhost:3001"
+
+4) Now add requests for different api calls as given below -
+
+CREATE USER (POST) - 
+	#API Url - "{{url}}/api/users"
+	#Set Authorization = No Auth
+	#In Tests add the following code -> if (pm.response.code === 201) {pm.environment.set('authToken', pm.response.json().token)}
+  	#Set Body as Raw(JSON) - Enter the json data as per user model. (For admin users add a property as role: "Admin")
+	(For creating user with role="Admin", provide pass="thisisanexampleadminpassphrase" which is the secret ADMIN_PASSWORD environment variable in dev.env
+	#SEND	
+
+LOGIN USER (POST) - 
+	#API Url - "{{url}}/api/users/login"
+	#Set Authorization = No Auth
+	#In Tests add the following code -> if (pm.response.code === 201) {pm.environment.set('authToken', pm.response.json().token)}
+  	#Set Body as Raw(JSON) - Enter the json data with email and pass
+	#SEND
+
+UPLOAD USER AVATAR (POST) - 
+	#API Url - "{{url}}/api/users/me/avatar"
+	#Set Body as form-data - KEY="avatar" and value=Select jpg file
+	#SEND
+
+LOGOUT USER (POST) - 
+	#API Url - "{{url}}/api/users/logout"
+	#SEND
+
+LOGOUT ALL USER DEVICES (POST) -
+	#API Url - "{{url}}/api/users/logoutALL"
+	#SEND
+
+READ USER PROFILE (GET) -
+	#API Url - "{{url}}/api/users/me"
+	#SEND
+
+UPDATE USER PERSONAL INFO (PATCH) -
+	#API Url - "{{url}}/api/users/logout"
+	#Set Body as RAW(JSON) - Enter Json data to be updated. Only Limited fields can be updated.
+	#SEND
+
+ADMIN UPDATE USER ORDERS (PATCH) - 
+	#API Url - "{{url}}/api/users/"userID"/orders/update"
+	#Set Body as RAW(JSON) - Enter Json data to be updated
+	#SEND
+
+DELETE USER (DEL) -
+	#API Url - "{{url}}/api/users/me"
+	#SEND
+
+VIEW USER CART (GET) -
+	#API Url - "{{url}}/api/users/me/cart"
+	#SEND
+
+VIEW USER ORDERS (GET) -
+	#API Url - "{{url}}/api/users/me/orders?sortBy=amount:asc&completed=false"
+	#SEND
+	(Various other filters and sort can be applied to different fields)
+
+ADD/REMOVE PRODUCT IN CART (POST) -
+	#To Remove API Url - "{{url}}/api/users/cart?product=remove"
+	#To Add Api URL - "{{url}}/api/users/cart?product=add"
+	#Set BODY to RAW(JSON) - { "product_id":"productID" }
+	#SEND
+
+PLACE NEW ORDER (POST) -
+	#API Url - "{{url}}/api/users/orders"
+	(Cart is automatically added as new order and cart is cleared)
+	#SEND
+
+ADMIN ADD PRODUCTS IN STOCK (POST) -
+	#API Url - "{{url}}/api/products/add"
+	#Set BODY to RAW(JSON) - Enter json data for new product as per model.
+	#SEND
+
+READ PRODUCTS (GET) - 
+	#API Url - "{{url}}/api/products?sortBy=price:desc&category=Fruits&InStock=true"
+	(Various other filters on title, amount and sort on different fields can be applied)
+	#SEND
+
+ADMIN READ PRODUCT BY ID (GET)-
+	#API Url - "{{url}}/api/products/productID"
+	#SEND
+
+ADMIN UPDATE PRODUCT BY ID (GET)-
+	#API Url - "{{url}}/api/products/productID"
+	#Set BODY to RAW(JSON) - Enter product data to be updated as json.
+	#SEND
+
+ADMIN DELETE PRODUCT (DEL) -
+	#API Url - "{{url}}/api/products/productID"
+	#SEND
+
+COMPLETE USER ORDER (POST) - 
+	#API Url - "{{url}}/api/users/orders/orderID"
+	#SEND
+
+ADMIN READ USERS (GET) -
+	#API Url - "{{url}}/api/users/read?city=Pune&age=gt:22&orders=products:product_7&sortBy=age:asc"
+	(Admin can apply other filters on cart, orders, age, city, name, contact, email and also sort by different fields
+	#SEND
+
+
+
+
+NOTE - TO understand various examples of POSTMAN, refer to screenshots folder. It also shows what type of data is accepted for different requests.
+
+
+
+!!THANK YOU!!
+-TUSHAR BANA 

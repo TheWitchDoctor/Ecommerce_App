@@ -1,0 +1,76 @@
+.Orders {
+    overflow-x: auto;
+    padding-bottom: 40%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: -5px;
+
+}
+
+
+.Orders table,th,td {
+    border: 1px solid lightblue;
+    box-shadow: 1px 1px lightblue;
+    color: aliceblue;
+    border-style: outset;
+
+}
+
+.Orders p {
+    text-align: center;
+    color: aliceblue;
+    padding-top: 10px;
+    font-size: large;
+}
+
+.Orders table {
+    margin-left: 10%;
+    width: 80%;
+    margin-top: 5%;
+    background-image: linear-gradient(65.5deg, rgba(23, 205, 205, 1) -15.1%, rgba(23, 25, 95, 1) 71.5%);
+    opacity: 0.85;
+    transition: 0.3s;
+}
+
+.Orders table:hover {
+    opacity: 1;
+}
+
+.Orders h2 {
+    color: aliceblue;
+    text-align: center;
+    margin-top: 5px;
+
+}
+
+
+.Headings {
+    text-align: center;
+    background-image: linear-gradient(114.9deg, rgba(34, 34, 34, 1) 8.3%, rgba(0, 40, 60, 1) 41.6%, rgba(0, 143, 213, 1) 93.4%);
+
+}
+
+.Headings td {
+    padding: 5px 5px;
+}
+
+@media (max-width:500px) {
+    .Orders p {
+        padding-top: 0px;
+        font-size: small;
+    }
+
+    .Orders table {
+        margin-left: 1%;
+        width: 100%;
+
+    }
+
+    .Headings {
+        font-size: xx-small;
+    }
+
+    .Headings td {
+        padding: 0px 0px;
+    }
+}

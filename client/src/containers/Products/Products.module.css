@@ -1,0 +1,143 @@
+.Products {
+    margin-left: 20%;
+    padding-right: 50px;
+    width: 75%;
+    height: 10%;
+    position: absolute;
+    
+}
+
+
+.input {
+    border-radius: 2%;
+    border-style: outset;
+    border: 1px solid linear-gradient(21deg, #10abff, #1beabd);
+    background-image: linear-gradient(114.9deg, rgba(34, 34, 34, 1) 8.3%, rgba(0, 40, 60, 1) 41.6%, rgba(0, 143, 213, 1) 93.4%);
+    padding: 8px 40px;
+    padding-right: 10%;
+    margin: 10px 0%;
+    display: inline-block;
+    opacity: 0.9;
+    
+    	
+}
+
+.input:hover {
+    opacity: 1;
+}
+
+
+.button {
+    border-radius: 10%;
+    border: 1.5px solid lightblue;
+    padding: 4px 20px;
+    margin-top: 6px;
+    display: inline-block;
+    background-image: linear-gradient(to right, #007991 0%, #78ffd6 51%, #007991 100%);
+    color: black;
+    width: 70%;
+    opacity: 0.6;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.button:hover {
+    opacity: 1;
+    background-position: right center;
+}
+
+.buttonReset {
+    border: 1.5px solid red;
+    padding: 4px 20px;
+    margin-top: 6px;
+    margin-left: 40%;
+    display: inline-block;
+    background-image: linear-gradient(to right, #e52d27 0%, #b31217 51%, #e52d27 100%);
+    color: whitesmoke;
+    width: 20%;
+    opacity: 0.8;
+    transition: 0.3s;
+    cursor: pointer;
+    box-shadow: 1px 1px red;
+}
+
+.buttonReset:hover {
+    opacity: 1;
+    background-position: right center;
+}
+
+.searchInput {
+    border-radius: 8%;
+    border: 1.5px solid lightblue;
+    padding: 8px 25px;
+    margin-top: 2px;
+    display: flex;
+    opacity: 0.6;
+    transition: 0.3s;
+    cursor: pointer;
+    background: linear-gradient(21deg, lightskyblue, white);
+}
+
+.searchInput:hover {
+    opacity: 1;
+    background-color: white;
+}
+
+.searchInput::placeholder {
+    color: black;
+}
+
+.searchInput:focus {
+    opacity: 1;
+    background-color: white;
+}
+
+.filter {
+    border-radius: 2%;
+    border-style: outset;
+    border: 1px solid linear-gradient(21deg, #10abff, #1beabd);
+    background-image: linear-gradient(115.7deg, rgba(3, 79, 135, 1) 6.2%, rgba(0, 184, 214, 1) 112.9%);
+    padding: 8px 40px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+    display: inline-flex;
+    position: relative;
+    opacity: 0.9;
+}
+
+.filter:hover {
+    opacity: 1;
+}
+.categoryFilter {
+    margin-left: 23%;
+    padding: 5px 20px;
+    font-size: 20px;
+}
+
+.sortFilter {
+    margin-left: 10%;
+    padding: 5px 20px;
+    font-size: 20px;
+}
+
+@media (max-width: 500px) {
+    .Products {
+        margin-left: 5%;
+        width: 100%;
+    }
+
+    .categoryFilter {
+        padding-left: 0px;
+        margin-left: 10px;
+    }
+
+    .sortFilter {
+        margin-left: 10px;
+        padding-left: 0px;
+    }
+
+    .filter {
+        width: 80%;
+    }
+}

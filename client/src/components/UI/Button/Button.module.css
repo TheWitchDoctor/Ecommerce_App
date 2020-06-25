@@ -1,0 +1,69 @@
+.Button {
+    width: auto;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 10px;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.Button:first-of-type {
+    margin-left: 0;
+}
+
+.Success {
+    border-radius: 12px;
+    background-image: linear-gradient(to right, #93F9B9 0%, #1D976C 51%);
+    color: white;
+}
+
+.Success:hover {
+    transition: 0.5s;
+    background-image: linear-gradient(to right, #1D976C 51%, #93F9B9 100%);
+    box-shadow: 2px 1px black;
+}
+
+.Danger {
+    border-radius: 12px;
+    background-image: linear-gradient(to right, #e52d27 0%, #b31217 51%);
+    color: white;
+}
+
+.Danger:hover {
+    background-image: linear-gradient(to right, #b31217 51%, #e52d27 100%);
+    box-shadow: 2px 1px black;
+    transition: 0.5s;
+}
+
+.Broad {
+    background-color: white;
+    background-image: linear-gradient(to right, #1A2980 51%, #26D0CE 100%);
+    border-radius: 12px;
+    width: 100%;
+    color: aliceblue;
+}
+
+.Broad:hover {
+    transition-duration: 0.5s;
+    background-position: right center;
+    background-image: linear-gradient(to right, #26D0CE 0%, #1A2980 51%);
+    box-shadow: 2px 1px black;
+}
+
+.Button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+    
+}
+
+@media (max-width:500px) {
+    .Button {
+        padding: 7px 7px;
+        margin: 0px 0px;
+        font-size: small;
+    }
+
+    
+}
